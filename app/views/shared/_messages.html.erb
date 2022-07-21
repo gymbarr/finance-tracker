@@ -1,0 +1,11 @@
+<% unless flash.empty? %>
+  <div class="row justify-content-md-center">
+    <% flash.each do |name, msg| %>
+      <% if name == "notice" %>
+        <p class="notice alert alert-success"><%= notice %></p>
+      <% else %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
