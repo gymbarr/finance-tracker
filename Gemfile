@@ -23,6 +23,9 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 # Devise is a flexible authentication solution for Rails based on Warden
 gem 'devise'
+# Devise views with Bootstrap 5 and i18n support for Rails 6.
+gem "devise-i18n"
+gem "devise-bootstrap5"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
