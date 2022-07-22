@@ -1,5 +1,6 @@
 <h1>My portfolio</h1>
 
+<%# search form for symbols %>
 <div class="search-area pb-4">
   <h3>Search Stocks</h3>
   <%= form_tag search_stock_path, method: :get do %>
@@ -7,7 +8,7 @@
       <div class="col-sm-9 no-right-padding">
         <%= text_field_tag :stock, params[:stock], placeholder: "Stock ticker symbol", autofocus: true, class: "form-control form-control-lg" %>
       </div>
-
+      <%# search button %>
       <div class="col-sm-3">
         <%= button_tag type: :submit, class: "btn btn-success" do %>
           <%= fa_icon 'search 2x' %>
@@ -17,6 +18,7 @@
   <% end %>
 </div>
 
+<%# displaying search results %>
 <% if @stock %>
   <div class="card card-header results-block">
     <strong>Symbol: </strong><%= @stock.ticker %>
