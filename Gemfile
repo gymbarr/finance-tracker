@@ -28,6 +28,8 @@ gem "devise-i18n"
 gem "devise-bootstrap5"
 # A Ruby client for the The IEX Cloud API
 gem 'iex-ruby-client'
+# provides the Font-Awesome web fonts and stylesheets as a Rails engine for use with the asset pipeline
+gem "font-awesome-rails"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
