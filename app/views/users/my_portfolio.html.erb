@@ -3,7 +3,7 @@
 <%# search form for symbols %>
 <div class="search-area pb-4">
   <h3>Search Stocks</h3>
-  <%= form_tag search_stock_path, method: :get do %>
+  <%= form_tag search_stock_path, remote: true, method: :get do %>
     <div class="form-group row">
       <div class="col-sm-9 no-right-padding">
         <%= text_field_tag :stock, params[:stock], placeholder: "Stock ticker symbol", autofocus: true, class: "form-control form-control-lg" %>
@@ -18,11 +18,7 @@
   <% end %>
 </div>
 
-<%# displaying search results %>
-<% if @stock %>
-  <div class="card card-header results-block">
-    <strong>Symbol: </strong><%= @stock.ticker %>
-    <strong>Name: </strong><%= @stock.name %>
-    <strong>Price: </strong><%= @stock.last_price %>
-  </div>
-<% end %>
+<%# displaying results of search with javascript (see _result.js.erb) %>
+<div id="results">
+
+</div>

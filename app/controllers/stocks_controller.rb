@@ -4,9 +4,11 @@ class StocksController < ApplicationController
     if params[:stock].present?
       # get the Stock object with all params
       @stock = Stock.new_lookup(params[:stock])
-      if !@stock.nil?
-        # reload current page
-        render 'users/my_portfolio'
+      if @stock
+        # execute script for rendering search results (see users/_result.js.erb)
+        respond_to do |format|
+          format.js { render partial: 'users/result' }
+        end
       else
         # if symbol wasn't found display alert message
         flash[:alert] = "Symbol not found"

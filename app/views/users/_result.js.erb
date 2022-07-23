@@ -1,0 +1,2 @@
+<%# display stock info after searching without reloading the whole page %>
+document.querySelector('#results').innerHTML = '<%= escape_javascript(render 'users/result.html') %>'
