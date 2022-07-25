@@ -11,13 +11,17 @@ class StocksController < ApplicationController
         end
       else
         # if symbol wasn't found display alert message
-        flash[:alert] = "Symbol not found"
-        redirect_to my_portfolio_path
+        respond_to do |format|
+          flash.now[:alert] = "Symbol not found"
+          format.js { render partial: 'users/result' }
+        end
       end
     else
-      # display alert message
-      flash[:alert] = "Enter a symbol to search"
-      redirect_to my_portfolio_path
+      # display alert message if nothing was entered to search
+      respond_to do |format|
+        flash.now[:alert] = "Enter a symbol to search"
+        format.js { render partial: 'users/result' }
+      end
     end
   end
 end

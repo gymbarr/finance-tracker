@@ -1,4 +1,9 @@
-<%# displaying search results %>
+<%# display search errors %>
+<div class="results-block">
+  <%= render 'shared/messages' %>
+</div>
+
+<%# display search results %>
 <% if @stock %>
   <div class="card card-header results-block">
     <strong>Symbol: </strong><%= @stock.ticker %>

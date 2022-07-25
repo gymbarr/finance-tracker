@@ -1,5 +1,6 @@
+<%# display flash messages %>
 <% unless flash.empty? %>
-  <div class="row justify-content-md-center">
+  <div class="row justify-content-md-center ps-3">
     <% flash.each do |name, msg| %>
       <% if name == "notice" %>
         <p class="notice alert alert-success"><%= notice %></p>
