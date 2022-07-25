@@ -21,6 +21,7 @@ class Stock < ApplicationRecord
     end
   end
 
+  # retreive stock object from db
   def self.check_db(ticker_symbol)
     where(ticker: ticker_symbol).first
   end
