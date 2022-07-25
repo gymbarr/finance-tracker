@@ -1,0 +1,25 @@
+<%# table with user tracked stocks %>
+<div class="row">
+  <div class="col-9">
+    <table class="table table-bordered table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Ticker</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%# iterate over tracked stocks and display it's info in rows %>
+      <% @tracked_stocks.each do |stock| %>
+        <tr>
+          <th scope="row"><%= stock.ticker %></th>
+          <td><%= stock.name %></td>
+          <td><%= stock.last_price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    </table>
+  </div>
+</div>
