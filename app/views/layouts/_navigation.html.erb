@@ -30,8 +30,11 @@
           </li>
         </ul>
 
-        <%# display logout button on the right side %>
+        <%# display username and logout button on the right side %>
         <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+          <li class="nav-item user-name">
+            <%= fa_icon 'user' %> <%= current_user.full_name %>
+          </li>
           <li class="nav-item">
             <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger me-2" %>
           </li>
