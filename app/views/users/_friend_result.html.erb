@@ -16,10 +16,10 @@
             <td><strong>Email: </strong><%= friend.email %></td>
             <td><%= link_to "View Profile", '#', class: "btn btn-sm btn-success" %>
                 <%# display option to follow user depend on restrictions of following %>
-                <% if !current_user.user_already_followed?(friend) %>
+                <% if current_user.not_following?(friend) %>
                   <span class="ms-2">
                     <%# show follow button if there is no restrictions %>
-                    <%= link_to "Follow", friendships_path(user: current_user, friend: friend),
+                    <%= link_to "Follow", friendships_path(friend: friend),
                                           class: "btn btn-sm btn-success", method: :post %>
                   </span>
                 <% else %>

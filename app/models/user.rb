@@ -28,8 +28,8 @@ class User < ApplicationRecord
     under_stock_limit? && !stock_already_tracked?(ticker_symbol)
   end
 
-  def user_already_followed?(user)
-    friends.include?(user)
+  def not_following?(user)
+    !self.friends.include?(user)
   end
 
   def full_name
