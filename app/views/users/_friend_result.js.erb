@@ -1,0 +1,2 @@
+<%# display stock info after searching without reloading the whole page %>
+document.querySelector('#friend_results').innerHTML = '<%= escape_javascript(render 'users/friend_result.html') %>'

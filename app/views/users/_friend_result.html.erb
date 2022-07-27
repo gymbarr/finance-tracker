@@ -1,0 +1,32 @@
+<%# display search errors %>
+<div class="results-block">
+  <%= render 'shared/messages' %>
+</div>
+
+<%# display search results %>
+<% if @user %>
+  <div class="card card-header results-block">
+    <strong>First Name: </strong><%= @user.first_name %>
+    <strong>Last Name: </strong><%= @user.last_name %>
+    <strong>Email: </strong><%= @user.email %>
+    <%# display option to follow user depend on restrictions of following %>
+    <% if current_user.can_follow_user?(@user) %>
+      <span class="ms-2">
+        <%# show follow button if there is no restrictions %>
+        <%= link_to "Follow", friendships_path(user: current_user, friend: @user),
+                              class: "btn btn-success", method: :post %>
+      </span>
+    <% else %>
+      <%# display badge with message of restriction %>
+      <span class="badge text-bg-secondary ms-2">
+        You are already following
+        <% if !current_user.under_following_limit? %>
+          5 users
+        <% end %>
+        <% if current_user.user_already_followed?(user) %>
+          the user
+        <% end %> 
+      </span>
+    <% end %>
+  </div>
+<% end %>

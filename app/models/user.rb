@@ -28,9 +28,52 @@ class User < ApplicationRecord
     under_stock_limit? && !stock_already_tracked?(ticker_symbol)
   end
 
+  def user_already_followed?(user)
+    friends.include?(user)
+  end
+
+  # restriction for maximum number of followed users
+  def under_following_limit?
+    friends.count < 5
+  end
+
+  # overal restriction of following users
+  def can_follow_user?(user)
+    under_following_limit? && !user_already_followed?(user)
+  end
+
   def full_name
     return "#{first_name} #{last_name}" if first_name || last_name
     "Anonymous"
+  end
+
+
+  def self.search
+    # remove leading and trailing whitespaces from search string
+    param.strip!
+    to_send_back = (first_name_matches(param) + last_name_matches(param) + email_matches(param)).unique
+
+    to_send_back ? to_send_back : nil
+  end
+
+  # get rows by first_name field and searching string in param 
+  def self.first_name_matches(param)
+    matches('first_name', param)
+  end
+
+  # get rows by last_name field and searching string in param 
+  def self.last_name_matches(param)
+    matches('last_name', param)
+  end
+
+  # get rows by email field and searching string in param 
+  def self.email_matches(param)
+    matches('email', param)
+  end
+
+  # retreives rows from the table by field name and searching string in param 
+  def self.matches(field_name, param)
+    where("#{field_name}", "%#{param}%")
   end
 
 end

@@ -8,4 +8,30 @@ class UsersController < ApplicationController
     @friends = current_user.friends
   end
 
+  def search
+    # if search input is not empty
+    if params[:user].present?
+      # get the User object by email
+      @user = User.find_by(email: params[:user])
+      if @user
+        # execute script for rendering search results (see users/_friend_result.js.erb)
+        respond_to do |format|
+          format.js { render partial: 'users/friend_result' }
+        end
+      else
+        # if symbol wasn't found display alert message
+        respond_to do |format|
+          flash.now[:alert] = "User not found"
+          format.js { render partial: 'users/friend_result' }
+        end
+      end
+    else
+      # display alert message if nothing was entered to search
+      respond_to do |format|
+        flash.now[:alert] = "Enter an email to search"
+        format.js { render partial: 'users/friend_result' }
+      end
+    end
+  end
+
 end

@@ -1,5 +1,28 @@
 <h1>Friends</h1>
 
+<%# search form for symbols %>
+<div class="search-area pb-4">
+  <h3>Search Friends</h3>
+  <%= form_tag search_friend_path, remote: true, method: :get do %>
+    <div class="form-group row">
+      <div class="col-sm-9 no-right-padding">
+        <%= text_field_tag :user, params[:user], placeholder: "Name or email", autofocus: true, class: "form-control form-control-lg" %>
+      </div>
+      <%# search button %>
+      <div class="col-sm-3">
+        <%= button_tag type: :submit, class: "btn btn-success" do %>
+          <%= fa_icon 'search 2x' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%# displaying results of search with javascript (see _friend_result.js.erb) %>
+<div id="friend_results">
+
+</div>
+
 <%# displaying table with following friends of the current user %>
 <% if !@friends.empty? %>
   <%= render 'friends/list' %>
