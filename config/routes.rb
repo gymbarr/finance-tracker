@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
   root 'welcome#index'
   get 'my_portfolio', to: 'users#my_portfolio'
+  get 'friends', to: 'users#my_friends'
   get 'search_stock', to: 'stocks#search'
+  resources :friendships, only: [:destroy]
 
 end
