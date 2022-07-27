@@ -32,26 +32,15 @@ class User < ApplicationRecord
     friends.include?(user)
   end
 
-  # restriction for maximum number of followed users
-  def under_following_limit?
-    friends.count < 5
-  end
-
-  # overal restriction of following users
-  def can_follow_user?(user)
-    under_following_limit? && !user_already_followed?(user)
-  end
-
   def full_name
     return "#{first_name} #{last_name}" if first_name || last_name
     "Anonymous"
   end
 
-
-  def self.search
+  def self.search(param)
     # remove leading and trailing whitespaces from search string
     param.strip!
-    to_send_back = (first_name_matches(param) + last_name_matches(param) + email_matches(param)).unique
+    to_send_back = (first_name_matches(param) + last_name_matches(param) + email_matches(param)).uniq
 
     to_send_back ? to_send_back : nil
   end
@@ -73,7 +62,12 @@ class User < ApplicationRecord
 
   # retreives rows from the table by field name and searching string in param 
   def self.matches(field_name, param)
-    where("#{field_name}", "%#{param}%")
+    where("#{field_name} like ?", "%#{param}%")
+  end
+
+  # remove current user from collection of users
+  def except_current_user(users)
+    users.reject { |user| user.id == self.id }
   end
 
 end
