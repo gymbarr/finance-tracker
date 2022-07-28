@@ -22,7 +22,7 @@ This app used for tracking stocks from [_iexcloud.io_](https://iexcloud.io) with
 
 ## Technologies Used
 - Ruby on Rails - version 6.0.5
-- Bootstrap - version 4.6
+- Bootstrap - version 5.2
 - PostgreSQL - version 14.4
 
 
